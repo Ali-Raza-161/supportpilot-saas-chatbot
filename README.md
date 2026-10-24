@@ -64,8 +64,26 @@ free, offline demo. A production upgrade path would be: replace
 `findAnswer()` in `app.js` with a hosted LLM/RAG call, keep the same
 fallback + ticket flow, and add human-agent handoff.
 
+## Design
+
+Premium redesign (2026-10-24): dark hero with animated gradient orbs,
+glassmorphism cards, 3D floating/tilt cards, scroll-reveal animations,
+animated dashboard counters and chatbot typing — using only plain CSS/JS,
+no external libraries, so it still works on GitHub Pages.
+
+## Screenshots
+
+Screenshots of the redesigned site are in `docs/screenshots-v2/`:
+
+- Landing: `docs/screenshots-v2/landing.png`
+- Pricing: `docs/screenshots-v2/pricing.png`
+- Dashboard: `docs/screenshots-v2/dashboard.png`
+- Chatbot: `docs/screenshots-v2/chatbot.png`
+- Knowledge Base: `docs/screenshots-v2/knowledge-base.png`
+- Embed widget: `docs/screenshots-v2/widget.png`
+
 ## GitHub
 
-This local build was **not** pushed to GitHub. The parent agent will push it
-after the user creates the empty repository, as agreed. GitHub Pages is
-**not** live for this project yet.
+Code is pushed to `Ali-Raza-161/supportpilot-saas-chatbot` on the main
+branch. GitHub Pages is **not** enabled yet — to make the demo live, enable
+it in Settings > Pages, deploy from the main branch, /(root).
