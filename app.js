@@ -223,4 +223,96 @@
     }
     if (view === "pricing") { document.getElementById("pricing").scrollIntoView(); }
   });
+
+  /* ---- Premium motion: reveal, 3D tilt, counters, particles, parallax ----
+     Pure CSS/JS only. All original handlers above are untouched. Respects
+     prefers-reduced-motion and skips tilt on touch / narrow screens. */
+  document.addEventListener("DOMContentLoaded", function () {
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Reveal on scroll
+    document.querySelectorAll(".grid .card, .pricing .card, .stat").forEach(function (el) {
+      el.classList.add("tilt"); el.classList.add("reveal");
+    });
+    document.querySelectorAll("#features, #pricing, #faq").forEach(function (el) { el.classList.add("reveal"); });
+    if ("IntersectionObserver" in window && !reduced) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("revealed"); io.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+      document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+    } else {
+      document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("revealed"); });
+    }
+    // 3D tilt on hover (mouse only)
+    if (!reduced && window.matchMedia("(pointer: fine)").matches) {
+      document.querySelectorAll(".tilt").forEach(function (el) {
+        el.addEventListener("mousemove", function (e) {
+          var r = el.getBoundingClientRect();
+          var x = (e.clientX - r.left) / r.width - 0.5;
+          var y = (e.clientY - r.top) / r.height - 0.5;
+          el.style.transform = "perspective(900px) rotateX(" + (-y * 8).toFixed(2) + "deg) rotateY(" + (x * 10).toFixed(2) + "deg) translateY(-4px)";
+        });
+        el.addEventListener("mouseleave", function () { el.style.transform = ""; });
+      });
+      // Hero parallax: orbs drift with the mouse
+      var hero = document.querySelector(".hero");
+      if (hero) {
+        hero.addEventListener("mousemove", function (e) {
+          var r = hero.getBoundingClientRect();
+          var x = (e.clientX - r.left) / r.width - 0.5;
+          var y = (e.clientY - r.top) / r.height - 0.5;
+          document.querySelectorAll(".orb").forEach(function (orb, i) {
+            orb.style.translate = (x * (12 + i * 8)) + "px " + (y * (10 + i * 6)) + "px";
+          });
+        });
+      }
+    }
+    // Animated dashboard counters, triggered when the dashboard opens
+    function animateCounters() {
+      if (reduced) return;
+      [["statChats", 377, ""], ["statResolved", 290, ""], ["statRate", 77, "%"], ["statTickets", 12, ""]].forEach(function (item) {
+        var el = document.getElementById(item[0]); if (!el) return;
+        var target = parseInt(el.textContent, 10); if (isNaN(target)) target = item[1];
+        var start = null;
+        (function step(ts) {
+          if (!start) start = ts;
+          var p = Math.min((ts - start) / 900, 1);
+          el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))) + item[2];
+          if (p < 1) requestAnimationFrame(step);
+        })(performance.now());
+      });
+    }
+    ["demoLogin", "demoLogin2", "ctaDemo"].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener("click", function () { setTimeout(animateCounters, 60); });
+    });
+    // Pricing toggle pop animation
+    document.querySelectorAll("[data-billing]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        document.querySelectorAll(".price").forEach(function (p) {
+          p.classList.remove("price-pop"); void p.offsetWidth; p.classList.add("price-pop");
+        });
+      });
+    });
+    // Subtle background particles on the hero canvas
+    var cv = document.getElementById("bgCanvas");
+    if (cv && !reduced) {
+      var ctx = cv.getContext("2d"), W, H, parts = [];
+      function resize() {
+        W = cv.width = cv.offsetWidth; H = cv.height = cv.offsetHeight;
+      }
+      resize(); window.addEventListener("resize", resize);
+      for (var i = 0; i < 42; i++) {
+        parts.push({ x: Math.random(), y: Math.random(), r: 1 + Math.random() * 2.2, s: 0.0004 + Math.random() * 0.001, o: 0.25 + Math.random() * 0.5 });
+      }
+      (function draw() {
+        ctx.clearRect(0, 0, W, H);
+        parts.forEach(function (p) {
+          p.y -= p.s; if (p.y < -0.05) { p.y = 1.05; p.x = Math.random(); }
+          ctx.beginPath(); ctx.arc(p.x * W, p.y * H, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(255,255,255," + p.o + ")"; ctx.fill();
+        });
+        requestAnimationFrame(draw);
+      })();
+    }
+  });
 })();

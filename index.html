@@ -9,15 +9,22 @@
 <nav><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
 <button class="btn" id="demoLogin">Demo login</button></header>
 
-<section class="hero"><span class="pill">AI customer support, without the enterprise price</span>
+<section class="hero"><canvas id="bgCanvas" width="1200" height="500" aria-hidden="true"></canvas>
+<div class="orb orb1" aria-hidden="true"></div><div class="orb orb2" aria-hidden="true"></div><div class="orb orb3" aria-hidden="true"></div>
+<span class="pill">AI customer support, without the enterprise price</span>
 <h1>Answer customers in seconds, not hours.</h1>
 <p>SupportPilot gives your business an AI chatbot trained on your own help answers, a support dashboard, and an embeddable widget — all in one place. No API key, no backend setup in this demo.</p>
 <button class="btn" id="ctaDemo">Try the live demo — free</button>
 <button class="btn ghost" id="demoLogin2">Open dashboard</button>
-<p class="mut">Demo only: no real account, password or payment is required. Sample data is used throughout.</p></section>
+<p class="mut">Demo only: no real account, password or payment is required. Sample data is used throughout.</p>
+<div class="hero-visual" aria-hidden="true">
+<div class="float-card tilt"><b>77%</b><br><span>resolved by the bot</span><div class="mini-msg">🤖 “Where is my order?” — answered instantly</div></div>
+<div class="float-card tilt"><b>377</b><br><span>chats this week</span><div class="mini-msg">📈 Live dashboard &amp; analytics</div></div>
+<div class="float-card tilt"><b>36</b><br><span>knowledge-base answers</span><div class="mini-msg">📚 Add your own Q&amp;As in seconds</div></div>
+</div></section>
 
-<section id="features"><h2>Everything a small business needs</h2><div class="grid">
-<div class="card"><h3>🤖 AI chatbot</h3><p>Answers from your knowledge base, with a clear fallback and ticket creation when it does not know.</p></div>
+<section id="features" class="reveal"><h2>Everything a small business needs</h2><div class="grid">
+<div class="card tilt reveal"><h3>🤖 AI chatbot</h3><p>Answers from your knowledge base, with a clear fallback and ticket creation when it does not know.</p></div>
 <div class="card"><h3>📚 Knowledge base manager</h3><p>Add, delete and update Q&As. The chatbot uses new answers immediately.</p></div>
 <div class="card"><h3>📊 Dashboard &amp; analytics</h3><p>See chats, resolution rate, recent conversations and a weekly chart at a glance.</p></div>
 <div class="card"><h3>🧩 Embed widget</h3><p>Copy one snippet and put the chatbot on your own website.</p></div>
@@ -25,7 +32,7 @@
 <div class="card"><h3>🎫 Tickets</h3><p>When the bot cannot help, customers create a ticket for a human agent.</p></div>
 </div></section>
 
-<section id="pricing"><h2>Simple pricing</h2>
+<section id="pricing" class="reveal"><h2>Simple pricing</h2>
 <div class="toggle"><button data-billing="monthly" class="btn ghost active">Monthly</button><button data-billing="yearly" class="btn ghost">Yearly (−20%)</button></div>
 <p class="mut" id="billingNote">Billed monthly. Switch to yearly to save about 20%.</p>
 <div class="pricing">
@@ -34,7 +41,7 @@
 <div class="card"><h3>Business</h3><div class="price" data-monthly="79" data-yearly="63">$79/mo</div><p>5,000 chats/mo, team seats, custom branding, API access.</p></div>
 </div></section>
 
-<section id="faq"><h2>Frequently asked questions</h2>
+<section id="faq" class="reveal"><h2>Frequently asked questions</h2>
 <button class="faq-q">Do I need an API key?</button><div class="faq-a">No. This demo runs entirely in your browser with a built-in knowledge base.</div>
 <button class="faq-q">Can I add my own answers?</button><div class="faq-a">Yes. In the dashboard, open Knowledge Base and add a question and answer — the chatbot uses it immediately.</div>
 <button class="faq-q">Will it work on my website?</button><div class="faq-a">Yes. Copy the embed snippet from Dashboard → Widget and paste it before the closing &lt;/body&gt; tag.</div>
