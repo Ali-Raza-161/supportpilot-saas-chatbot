@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SupportPilot — AI Customer Support SaaS</title>
+<link rel="stylesheet" href="styles.css">
+<script src="data.js"></script><script src="app.js"></script></head>
+<body>
+<div id="view-landing">
+<header class="top"><div class="logo">Support<span>Pilot</span></div>
+<nav><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
+<button class="btn" id="demoLogin">Demo login</button></header>
+
+<section class="hero"><span class="pill">AI customer support, without the enterprise price</span>
+<h1>Answer customers in seconds, not hours.</h1>
+<p>SupportPilot gives your business an AI chatbot trained on your own help answers, a support dashboard, and an embeddable widget — all in one place. No API key, no backend setup in this demo.</p>
+<button class="btn" id="ctaDemo">Try the live demo — free</button>
+<button class="btn ghost" id="demoLogin2">Open dashboard</button>
+<p class="mut">Demo only: no real account, password or payment is required. Sample data is used throughout.</p></section>
+
+<section id="features"><h2>Everything a small business needs</h2><div class="grid">
+<div class="card"><h3>🤖 AI chatbot</h3><p>Answers from your knowledge base, with a clear fallback and ticket creation when it does not know.</p></div>
+<div class="card"><h3>📚 Knowledge base manager</h3><p>Add, delete and update Q&As. The chatbot uses new answers immediately.</p></div>
+<div class="card"><h3>📊 Dashboard &amp; analytics</h3><p>See chats, resolution rate, recent conversations and a weekly chart at a glance.</p></div>
+<div class="card"><h3>🧩 Embed widget</h3><p>Copy one snippet and put the chatbot on your own website.</p></div>
+<div class="card"><h3>🌍 English + Roman Urdu</h3><p>Switch the greeting language in Settings to welcome more customers.</p></div>
+<div class="card"><h3>🎫 Tickets</h3><p>When the bot cannot help, customers create a ticket for a human agent.</p></div>
+</div></section>
+
+<section id="pricing"><h2>Simple pricing</h2>
+<div class="toggle"><button data-billing="monthly" class="btn ghost active">Monthly</button><button data-billing="yearly" class="btn ghost">Yearly (−20%)</button></div>
+<p class="mut" id="billingNote">Billed monthly. Switch to yearly to save about 20%.</p>
+<div class="pricing">
+<div class="card"><h3>Free</h3><div class="price" data-monthly="0" data-yearly="0">$0/mo</div><p>1 chatbot, 50 chats/mo, knowledge base, widget.</p></div>
+<div class="card"><h3>Pro ⭐ Most popular</h3><div class="price" data-monthly="29" data-yearly="23">$29/mo</div><p>Unlimited Q&As, 1,000 chats/mo, analytics, tickets, priority support.</p></div>
+<div class="card"><h3>Business</h3><div class="price" data-monthly="79" data-yearly="63">$79/mo</div><p>5,000 chats/mo, team seats, custom branding, API access.</p></div>
+</div></section>
+
+<section id="faq"><h2>Frequently asked questions</h2>
+<button class="faq-q">Do I need an API key?</button><div class="faq-a">No. This demo runs entirely in your browser with a built-in knowledge base.</div>
+<button class="faq-q">Can I add my own answers?</button><div class="faq-a">Yes. In the dashboard, open Knowledge Base and add a question and answer — the chatbot uses it immediately.</div>
+<button class="faq-q">Will it work on my website?</button><div class="faq-a">Yes. Copy the embed snippet from Dashboard → Widget and paste it before the closing &lt;/body&gt; tag.</div>
+<button class="faq-q">What happens when the bot does not know?</button><div class="faq-a">It says so honestly and offers to create a ticket for a human agent.</div>
+</section>
+<footer>SupportPilot — demo SaaS project. Sample data only. Built for portfolio demonstration.</footer>
+</div>
+
+<div id="view-dashboard" style="display:none">
+<div class="dash-head"><div><strong>SupportPilot Dashboard</strong> · <span id="bizNameLabel">Acme Store</span> <span class="mut">(Demo account — no real login)</span></div><button class="btn ghost" id="backLanding">Back to site</button></div>
+<div class="stats">
+<div class="stat"><div>Chats this week</div><b id="statChats">377</b></div>
+<div class="stat"><div>Resolved by bot</div><b id="statResolved">290</b></div>
+<div class="stat"><div>Resolution rate</div><b id="statRate">77%</b></div>
+<div class="stat"><div>Open tickets</div><b id="statTickets">12</b></div>
+</div>
+<div class="tabs">
+<button class="dash-tab active" data-tab="overview">Overview</button>
+<button class="dash-tab" data-tab="chat">Chatbot</button>
+<button class="dash-tab" data-tab="kb">Knowledge Base</button>
+<button class="dash-tab" data-tab="widget">Embed Widget</button>
+<button class="dash-tab" data-tab="settings">Settings</button>
+</div>
+
+<div class="tab-panel" id="tab-overview"><h2>Overview</h2><p class="mut">Sample analytics data. Blue = chats, green = resolved.</p>
+<canvas id="chartCanvas" width="640" height="240" style="max-width:100%"></canvas>
+<h3>Recent conversations (sample)</h3><div id="convList"></div></div>
+
+<div class="tab-panel" id="tab-chat" style="display:none"><h2>AI support chatbot</h2>
+<div class="chatbox"><div class="chatlog" id="chatLog"></div>
+<div class="chips"><button data-ask="Where is my order?">Where is my order?</button><button data-ask="How do I get a refund?">Refund?</button><button data-ask="How long does shipping take?">Shipping time?</button><button data-ask="What are your pricing plans?">Pricing?</button></div>
+<div class="chatinput"><input id="chatInput" placeholder="Ask about orders, refunds, shipping…"><button class="btn" id="sendChat">Send</button></div></div>
+<h3>Create a ticket</h3><input id="ticketSubject" placeholder="Ticket subject"><textarea id="ticketMsg" placeholder="Describe the problem…"></textarea><button class="btn" id="ticketBtn">Create ticket</button><p id="ticketStatus"></p></div>
+
+<div class="tab-panel" id="tab-kb" style="display:none"><h2>Knowledge Base manager</h2><p><span id="kbCount"></span> · Changes save in this browser and the chatbot uses them immediately.</p>
+<input id="kbQ" placeholder="New question"><input id="kbCat" placeholder="Category, e.g. Orders"><textarea id="kbA" placeholder="Answer"></textarea><button class="btn" id="kbAdd">Add Q&amp;A</button><p id="kbStatus"></p><div id="kbList"></div></div>
+
+<div class="tab-panel" id="tab-widget" style="display:none"><h2>Embed widget</h2><div class="widget-demo">
+<div><p>Copy this snippet to your website:</p><textarea id="embedCode" rows="4" readonly></textarea><button class="btn" id="copyEmbed">Copy embed code</button><p id="copyStatus"></p></div>
+<div class="sample-page"><h3>Sample business page</h3><p>Welcome to <span id="widgetBiz"></span>. This is a live preview of how the widget looks on a customer website.</p>
+<div class="widget"><div class="widget-head" id="widgetGreet"></div><div class="chatlog" id="widgetLog" style="height:180px"></div><div class="chatinput"><input id="widgetInput" placeholder="Ask the widget…"><button class="btn" id="widgetSend">Send</button></div></div></div>
+</div></div>
+
+<div class="tab-panel" id="tab-settings" style="display:none"><h2>Settings</h2>
+<label>Business name</label><input id="setBiz">
+<label>Greeting message</label><input id="setGreet">
+<label>Greeting language</label><select id="setLang"><option value="en">English</option><option value="ur">Roman Urdu</option></select>
+<button class="btn" id="saveSettings">Save settings</button><p id="setStatus"></p>
+<p class="mut">Demo settings save only in this browser (localStorage). No data leaves your device in this demo.</p></div>
+</div>
+</body></html>
