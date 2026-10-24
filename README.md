@@ -73,14 +73,31 @@ no external libraries, so it still works on GitHub Pages.
 
 ## Screenshots
 
-Screenshots of the redesigned site are in `docs/screenshots-v2/`:
+Screenshots of the redesigned site (in `docs/screenshots-v2/`):
 
-- Landing: `docs/screenshots-v2/landing.png`
-- Pricing: `docs/screenshots-v2/pricing.png`
-- Dashboard: `docs/screenshots-v2/dashboard.png`
-- Chatbot: `docs/screenshots-v2/chatbot.png`
-- Knowledge Base: `docs/screenshots-v2/knowledge-base.png`
-- Embed widget: `docs/screenshots-v2/widget.png`
+### Landing
+
+![SupportPilot landing page](docs/screenshots-v2/landing.png)
+
+### Pricing
+
+![SupportPilot pricing](docs/screenshots-v2/pricing.png)
+
+### Dashboard
+
+![SupportPilot dashboard](docs/screenshots-v2/dashboard.png)
+
+### Chatbot
+
+![SupportPilot chatbot](docs/screenshots-v2/chatbot.png)
+
+### Knowledge Base
+
+![SupportPilot knowledge base](docs/screenshots-v2/knowledge-base.png)
+
+### Embed widget
+
+![SupportPilot embed widget](docs/screenshots-v2/widget.png)
 
 ## GitHub
 
